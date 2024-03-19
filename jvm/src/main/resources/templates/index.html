@@ -1,0 +1,47 @@
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Heap memory test</title></head>
+<body>
+<h1>Burger store</h1>
+<button onclick="createBurger(1)">Create a burger</button>
+<button onclick="createBurger(100)">Create 10 burgers</button>
+<button onclick="createBurger(10000)">Create 10000 burgers</button>
+<!--<table border="1">-->
+<!--    <tr>-->
+<!--        <td>버거 번호</td>-->
+<!--        <td>버거 이름</td>-->
+<!--        <td>버거 patty</td>-->
+<!--        <td>버거 onion</td>-->
+<!--        <td>버거 sauce</td>-->
+<!--    </tr>-->
+<!--    <tr th:each="burger : ${burgers}">-->
+<!--        <td th:text="${burger.id}" ></td>-->
+<!--        <td th:text="${burger.name}"></td>-->
+<!--        <td th:text="${burger.patty}"></td>-->
+<!--        <td th:text="${burger.onion}"></td>-->
+<!--        <td th:text="${burger.sauce}"></td>-->
+<!--    </tr>-->
+<!--</table>-->
+<script>
+    //게시글 쓰기 페이지로 이동
+    const createBurger = (num) => {
+        $.ajax({
+            url : `/burger/${num}`,
+            type : 'get',
+            contentType : 'application/json; charset=utf-8',
+            dataType : 'json',
+            async : false,
+            success : function (response) {
+                console.log(response);
+            },
+            error : function (request, status, error) {
+                console.log(error)
+            }
+        })
+    }
+</script>
+<script type="text/javascript" th:src="@{http://code.jquery.com/jquery-3.5.1.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"> </script>
+</body>
+</html>
